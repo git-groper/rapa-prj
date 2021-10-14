@@ -1,0 +1,19 @@
+{
+  "bindings": [
+    {
+      "type": "eventHubTrigger",
+      "name": "IoTHubMessages",
+      "direction": "in",
+      "eventHubName": "iot-fleetmgmt01_events",
+      "connection": "iot-fleetmgmt01_events_IOTHUB",
+      "consumerGroup": "$default"
+    },
+    {
+      "type": "blob",
+      "direction": "out",
+      "name": "outputBlob",
+      "path": "iot-container/{rand-guid}",
+      "connection": "AzureWebJobsStorage"
+    }
+  ]
+}
