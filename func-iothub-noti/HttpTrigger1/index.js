@@ -84,14 +84,14 @@ module.exports = async function (context, req) {
     var request = require('request');
 
     var headers = {
-        'Authorization': 'SharedAccessSignature sr=TT-hub.azure-devices.net&sig=FDM6JzKBRHB%2F0V0otIxyFY0o%2FqO0PKt4ukjKPyt6G%2F0%3D&se=1636357132&skn=iothubowner',
+        'Authorization': 'SharedAccessSignature sr=iot-FleetMgmt01.azure-devices.net&sig=h1zXaVdlViqXrgPVrGKApnS7xXIaoSl5c7SS6VORQuQ%3D&se=1636800220&skn=iothubowner',
         'Content-Type': 'application/json'
     };
     
     var dataString = '{"methodName": "setDisplayText", "responseTimeoutInSeconds": 30, "payload": "Waring Message"}';
     
     var option = {
-        url: 'https://TT-hub.azure-devices.net/twins/mydevice/methods?api-version=2018-06-30',
+        url: 'https://iot-FleetMgmt01.azure-devices.net/twins/bumblebee/methods?api-version=2018-06-30',
         method: 'POST',
         headers: headers,
         body: dataString
