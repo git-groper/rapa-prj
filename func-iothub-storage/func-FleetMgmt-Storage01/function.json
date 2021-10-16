@@ -6,7 +6,7 @@
       "direction": "in",
       "eventHubName": "iot-fleetmgmt01_events",
       "connection": "iot-fleetmgmt01_events_IOTHUB",
-      "consumerGroup": "$default"
+      "consumerGroup": "storage"
     },
     {
       "type": "blob",

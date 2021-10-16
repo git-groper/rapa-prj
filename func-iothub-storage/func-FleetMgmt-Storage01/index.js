@@ -1,14 +1,23 @@
 module.exports = function (context, IoTHubMessages)   {
+    //context에서 devID, time 추출
+    let deti = context.bindingData;   //bindingData 객체
+    let deid = context.bindingData.systemProperties["iothub-connection-device-id"];
+
+
     // IotHubMessages data에서 추출
-    let msgid = IoTHubMessages.messageId;
-    let iotdevid = IoTHubMessages.deviceId;
+    let devid = !deid ? "N/A" : deid;
     let iottemp = IoTHubMessages.temperature;
     let iothumi = IoTHubMessages.humidity;
+    let iottime = !deti.enqueuedTimeUtc ? "N/A" : deti.enqueuedTimeUtc;
     let iotpressure = !IoTHubMessages.pressure ? "N/A" : IoTHubMessages.pressure;
-    let iottime = !IoTHubMessages.time ? "N/A" : IoTHubMessages.time;
-
+    // let iottime = !context.bindingData.systemProperties.enqueuedTimeUtc ? "N/A" : Invocationcontext.bindingData.systemProperties.enqueuedTimeUtc;
+    // let iotdevid = context.bindingData.systemProperties[0];
+    //let iotdevid = deid;
+    
+    console.log(deid)
     //const hub = {"MessageId": msgid, "DeviceId": iotdevid, "Temperature": iottemp, "Humidity": iothumi};
-    const hub = {"MessageId": msgid, "Time": iottime, "DeviceId": iotdevid, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
+//    const hub = {"DeviceId": "iot-device", "Time": iottime, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
+    const hub = {"DeviceID": devid, "Time": iottime, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
     // ^ mongodb 저장시에는 JSON object로 넣어준다
 
 	//MongoDB API 정보
@@ -34,6 +43,16 @@ module.exports = function (context, IoTHubMessages)   {
         })
         .catch(error => console.error(error))
       }
+
+        // if (iottemp > 28) {
+        //     console.log(`alert temperature is high! ${iottemp}`)
+        //     const alertTemp = cli.collection("alert-data")
+        //     alertTemp.insertOne(hub);
+        //     client.close();
+        // }
+        //     else{
+    
+        //     }
  
 		console.log(`IoT Message saved to CosmosDB: ${JSON.stringify(hub)}`);
     });
