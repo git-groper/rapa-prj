@@ -12,7 +12,7 @@
       "type": "blob",
       "direction": "out",
       "name": "outputBlob",
-      "path": "iot-container/devicelog",
+      "path": "iot-container/text.txt",
       "connection": "AzureWebJobsStorage"
     }
   ]
