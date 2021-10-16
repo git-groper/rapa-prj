@@ -3,48 +3,50 @@ const https = require('https');
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
     context.log('cicd success!4')
-    const DeviceId = (req.query.name || (req.body && req.body[0].IoTHub.ConnectionDeviceId));
+    const deviceId = (req.query.name || (req.body && req.body[0].IoTHub.ConnectionDeviceId));
     const temperature = (req.query.name || (req.body && req.body[0].temperature));
     const humidity = (req.query.name || (req.body && req.body[0].humidity));
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
-    const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
+    const time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const testval = temperature - 30;
     const testval2 = testval.toFixed(2);
-    context.log("DeviceId : ",DeviceId);
+
+    context.log("DeviceId : ",deviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
     context.log("pressure : ",pressure);
-    context.log("Time : ",Time);    
+    context.log("Time : ",time);
+
     const data = JSON.stringify({
         "@type": "MessageCard",
         "@context": "http://schema.org/extensions",
         "themeColor": "0076D7",
-        "summary": "Temperature WARING MESSAGE",
+        "summary": "Temperature WARNING MESSAGE",
         "sections": [
             {
-                "activityTitle": "The current temperature is " + testval2 + "degrees higher than the reference temperature.",
-                "activitySubtitle": "Maxim-device",
+                "activityTitle": "The current temperature is " + testval2 + " degrees higher than the reference temperature.",
+                "activitySubtitle": "Fleet Management",
                 "activityImage": "https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_170956.png",
                 "facts": [
                     {
                         "name": "DeviceId:",
-                        "value": DeviceId
+                        "value": deviceId
                     },
                     {
-                        "name": "temperature:",
+                        "name": "Temperature:",
                         "value": temperature    
                     },
                     {
-                        "name": "humidity:",
+                        "name": "Humidity:",
                         "value": humidity
                     },
                     {
-                        "name": "pressure:",
+                        "name": "Pressure:",
                         "value": pressure
                     },
                     {
                         "name": "Time:",
-                        "value": Time
+                        "value": time
                     }
                 ],
                 "markdown": true
