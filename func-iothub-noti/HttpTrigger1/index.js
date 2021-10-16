@@ -2,7 +2,7 @@ const https = require('https');
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    context.log('cicd success2!')
+    context.log('cicd success!')
     const DeviceId = (req.query.name || (req.body && req.body[0].IoTHub.ConnectionDeviceId));
     const temperature = (req.query.name || (req.body && req.body[0].temperature));
     const humidity = (req.query.name || (req.body && req.body[0].humidity));
