@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
     const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const aa = temperature - 30;
-    const bb = document.write(aa);
+    const bb = document.write(parseInt(aa));
     context.log("DeviceId : ",DeviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
