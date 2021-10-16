@@ -9,7 +9,7 @@ module.exports = async function (context, req) {
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
     const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const aa = temperature - 30;
-
+    const bb = document.write(aa);
     context.log("DeviceId : ",DeviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
@@ -23,7 +23,7 @@ module.exports = async function (context, req) {
         "summary": "Temperature WARING MESSAGE",
         "sections": [
             {
-                "activityTitle": "The current temperature is " + document.write(aa) + "degrees higher than the reference temperature.",
+                "activityTitle": "The current temperature is " + bb + "degrees higher than the reference temperature.",
                 "activitySubtitle": "Maxim-device",
                 "activityImage": "https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_170956.png",
                 "facts": [
