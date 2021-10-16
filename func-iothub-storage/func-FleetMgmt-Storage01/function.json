@@ -12,7 +12,14 @@
       "type": "blob",
       "direction": "out",
       "name": "outputBlob",
-      "path": "iot-container/text.txt",
+      "path": "iot-container/devicelog",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "outputQueueItem",
+      "queueName": "iot-device-log",
       "connection": "AzureWebJobsStorage"
     }
   ]
