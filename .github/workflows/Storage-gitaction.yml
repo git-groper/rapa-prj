@@ -1,7 +1,9 @@
 name: Deploy Node.js project to function app
 
 on:
-  [push]
+  push:
+    paths:
+      - 'func-iothub-storage/**'
 
 env:
   AZURE_FUNCTIONAPP_NAME: "func-FleetMgmt-Storage01"               

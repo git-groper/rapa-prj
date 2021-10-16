@@ -2,6 +2,7 @@ module.exports = function (context, IoTHubMessages)   {
     //context에서 devID, time 추출
     let deti = context.bindingData;   //bindingData 객체
     let deid = context.bindingData.systemProperties["iothub-connection-device-id"];
+    context.log('cicd success!3')
 
 
     // IotHubMessages data에서 추출

@@ -2,20 +2,19 @@ const https = require('https');
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
-    context.log('cicd success!')
+    context.log('cicd success!4')
     const DeviceId = (req.query.name || (req.body && req.body[0].IoTHub.ConnectionDeviceId));
     const temperature = (req.query.name || (req.body && req.body[0].temperature));
     const humidity = (req.query.name || (req.body && req.body[0].humidity));
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
     const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
-    const aa = temperature - 30;
-    const bb = document.write(aa);
+    const testval = temperature - 30;
+    const testval2 = testval.toFixed(2);
     context.log("DeviceId : ",DeviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
     context.log("pressure : ",pressure);
     context.log("Time : ",Time);    
-
     const data = JSON.stringify({
         "@type": "MessageCard",
         "@context": "http://schema.org/extensions",
@@ -23,7 +22,7 @@ module.exports = async function (context, req) {
         "summary": "Temperature WARING MESSAGE",
         "sections": [
             {
-                "activityTitle": "The current temperature is " + bb + "degrees higher than the reference temperature.",
+                "activityTitle": "The current temperature is " + testval2 + "degrees higher than the reference temperature.",
                 "activitySubtitle": "Maxim-device",
                 "activityImage": "https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_170956.png",
                 "facts": [
