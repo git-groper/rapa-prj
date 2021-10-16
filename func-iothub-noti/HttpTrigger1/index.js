@@ -8,7 +8,7 @@ module.exports = async function (context, req) {
     const humidity = (req.query.name || (req.body && req.body[0].humidity));
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
     const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
-
+    const aa = temperature - 30;
 
     context.log("DeviceId : ",DeviceId);
     context.log("Temperature : ",temperature);
