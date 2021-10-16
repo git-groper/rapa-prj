@@ -12,7 +12,7 @@
       "type": "blob",
       "direction": "out",
       "name": "outputBlob",
-      "path": "iot-container/{rand-guid}",
+      "path": "iot-container/devicelog",
       "connection": "AzureWebJobsStorage"
     }
   ]
