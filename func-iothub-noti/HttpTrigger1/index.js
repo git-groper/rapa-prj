@@ -23,7 +23,7 @@ module.exports = async function (context, req) {
         "summary": "Temperature WARING MESSAGE",
         "sections": [
             {
-                "activityTitle": "The current temperature is " + aa + "degrees higher than the reference temperature.",
+                "activityTitle": "The current temperature is " + document.write(aa) + "degrees higher than the reference temperature.",
                 "activitySubtitle": "Maxim-device",
                 "activityImage": "https://cdn.icon-icons.com/icons2/2699/PNG/512/microsoft_azure_logo_icon_170956.png",
                 "facts": [
@@ -88,7 +88,7 @@ module.exports = async function (context, req) {
         'Content-Type': 'application/json'
     };
     
-    var dataString = '{"methodName": "setDisplayText", "responseTimeoutInSeconds": 30, "payload": "Waring"}';
+    var dataString = '{"methodName": "setDisplayText", "responseTimeoutInSeconds": 30, "payload": "Warning"}';
     
     var option = {
         url: 'https://iot-FleetMgmt01.azure-devices.net/twins/bumblebee/methods?api-version=2018-06-30',
