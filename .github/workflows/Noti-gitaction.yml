@@ -3,7 +3,7 @@ name: Deploy Node.js project to function app
 on:
   push:
     paths:
-      - './func-iothub-noti/*'
+      - 'func-iothub-noti/**'
 
 env:
   AZURE_FUNCTIONAPP_NAME: "func-FleetMgmt-Noti"               
