@@ -4,7 +4,7 @@
       "type": "eventHubTrigger",
       "name": "IoTHubMessages",
       "direction": "in",
-      "eventHubName": "iot-fleetmgmt01_events",
+      "eventHubName": "iot-fleetmgmt01",
       "connection": "iot-fleetmgmt01_events_IOTHUB",
       "consumerGroup": "storage"
     },
