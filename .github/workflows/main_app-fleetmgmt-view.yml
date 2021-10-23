@@ -5,8 +5,8 @@ name: Build and deploy Node.js app to Azure Web App - app-FleetMgmt-View
 
 on:
   push:
-    branches:
-      - main
+    paths:
+      - 'webapp-iothub-dashboard/**'
   workflow_dispatch:
 
 jobs:
