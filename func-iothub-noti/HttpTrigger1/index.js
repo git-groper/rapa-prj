@@ -11,7 +11,7 @@ module.exports = async function (context, req) {
     const testval = temperature - 30;
     const testval2 = testval.toFixed(2);
 
-    const DeviceURL="https://iot-FleetMgmt01.azure-devices.net/twins/"+deviceID+"/methods?api-version=2018-06-30";
+    const DeviceURL="https://iot-FleetMgmt01.azure-devices.net/twins/"+deviceId+"/methods?api-version=2018-06-30";
     context.log("DeviceId : ",deviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
