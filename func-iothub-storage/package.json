@@ -7,6 +7,7 @@
     "test": "echo \"No tests yet...\""
   },
   "dependencies": {
+    "fs": "0.0.1-security",
     "mongodb": "^4.1.2"
   },
   "devDependencies": {}

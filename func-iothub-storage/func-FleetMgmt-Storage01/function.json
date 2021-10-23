@@ -4,7 +4,7 @@
       "type": "eventHubTrigger",
       "name": "IoTHubMessages",
       "direction": "in",
-      "eventHubName": "iot-fleetmgmt01_events",
+      "eventHubName": "iot-fleetmgmt01",
       "connection": "iot-fleetmgmt01_events_IOTHUB",
       "consumerGroup": "storage"
     },
@@ -13,6 +13,13 @@
       "direction": "out",
       "name": "outputBlob",
       "path": "iot-container/devicelog",
+      "connection": "AzureWebJobsStorage"
+    },
+    {
+      "type": "queue",
+      "direction": "out",
+      "name": "outputQueueItem",
+      "queueName": "iot-device-log",
       "connection": "AzureWebJobsStorage"
     }
   ]

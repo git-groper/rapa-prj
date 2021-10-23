@@ -2,6 +2,7 @@ module.exports = function (context, IoTHubMessages)   {
     //context에서 devID, time 추출
     let deti = context.bindingData;   //bindingData 객체
     let deid = context.bindingData.systemProperties["iothub-connection-device-id"];
+    context.log('cicd success!3')
 
 
     // IotHubMessages data에서 추출
@@ -16,7 +17,7 @@ module.exports = function (context, IoTHubMessages)   {
     
     console.log(deid)
     //const hub = {"MessageId": msgid, "DeviceId": iotdevid, "Temperature": iottemp, "Humidity": iothumi};
-//    const hub = {"DeviceId": "iot-device", "Time": iottime, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
+    //const hub = {"DeviceId": "iot-device", "Time": iottime, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
     const hub = {"DeviceID": devid, "Time": iottime, "Temperature": iottemp, "Humidity": iothumi, "pressure": iotpressure};
     // ^ mongodb 저장시에는 JSON object로 넣어준다
 
@@ -43,20 +44,34 @@ module.exports = function (context, IoTHubMessages)   {
         })
         .catch(error => console.error(error))
       }
-
-        // if (iottemp > 28) {
-        //     console.log(`alert temperature is high! ${iottemp}`)
-        //     const alertTemp = cli.collection("alert-data")
-        //     alertTemp.insertOne(hub);
-        //     client.close();
-        // }
-        //     else{
-    
-        //     }
  
 		console.log(`IoT Message saved to CosmosDB: ${JSON.stringify(hub)}`);
     });
+        context.bindings.outputQueueItem = JSON.stringify(hub); // Queue 스토리지 저장 코드
 
-    context.bindings.outputBlob = JSON.stringify(hub);
+        // context.bindings.outputBlob = JSON.stringify(hub); // Blob Storage 저장 코드
+
+    // //여기서 부터 스토리지 저장시 이어쓰기 테스트 중.
+    // const fs = require('fs');
+    // // const storageuri = 'https://safleetmgmt01.blob.core.windows.net/iot-container/test.json';
+    
+    // // // //const bindd = context.bindings.outputBlob;
+    // const strhubb = JSON.stringify(hub);
+
+    //   fs.appendFile(storageuri, strhubb, function (err) { 
+    //       if (err){console.log(err); throw err; }  
+    //       else {
+    //           console.log('The "data to append" was appended to file!');
+    //       }
+    //   });
+
+    // context.bindings.outputBlob = 
+    // fs.appendFile(JSON.stringify(hub), function (err) { 
+    //     if (err){storageuri.console.log(err); throw err; }  
+    //     else {
+    //         console.log('The "data to append" was appended to file!');
+    //     }
+    // });
+
     context.done();
  };
