@@ -10,6 +10,7 @@ module.exports = async function (context, req) {
     const Time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const testval = temperature - 30;
     const testval2 = testval.toFixed(2);
+    var DeviceURL='https://iot-FleetMgmt01.azure-devices.net/twins/'+ DeviceID +'/methods?api-version=2018-06-30';
     context.log("DeviceId : ",DeviceId);
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
@@ -90,7 +91,7 @@ module.exports = async function (context, req) {
     var dataString = '{"methodName": "setDisplayText", "responseTimeoutInSeconds": 30, "payload": "Warning"}';
     
     var option = {
-        url: 'https://iot-FleetMgmt01.azure-devices.net/twins/bumblebee/methods?api-version=2018-06-30',
+        url: DeviceURL,
         method: 'POST',
         headers: headers,
         body: dataString
