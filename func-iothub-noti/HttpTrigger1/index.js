@@ -1,4 +1,8 @@
 const https = require('https');
+const moment = require("moment");
+require('moment-timezone');
+moment.tz.setDefault("Asia/Seoul");
+
 
 module.exports = async function (context, req) {
     context.log('JavaScript HTTP trigger function processed a request.');
@@ -7,10 +11,12 @@ module.exports = async function (context, req) {
     const temperature = (req.query.name || (req.body && req.body[0].temperature));
     const humidity = (req.query.name || (req.body && req.body[0].humidity));
     const pressure = (req.query.name || (req.body && !req.body[0].pressure ? 0 : req.body[0].pressure));
-    const time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
+    const time = moment().format("YYMMDD HH:mm:ss");
+    //    const time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const testval = temperature - 30;
     const testval2 = testval.toFixed(2);
     var DeviceURL="https://iot-FleetMgmt01.azure-devices.net/twins/" + deviceId + "/methods?api-version=2018-06-30";
+
 
     context.log("DeviceId : ",deviceId);
     context.log("Temperature : ",temperature);
