@@ -10,13 +10,10 @@ module.exports = async function (context, req) {
     const time = (req.query.name || (req.body && req.body[0].EventProcessedUtcTime));
     const testval = temperature - 30;
     const testval2 = testval.toFixed(2);
-<<<<<<< HEAD
-    var DeviceURL='https://iot-FleetMgmt01.azure-devices.net/twins/'+ DeviceID +'/methods?api-version=2018-06-30';
-    context.log("DeviceId : ",DeviceId);
-=======
 
+    var DeviceURL="https://iot-FleetMgmt01.azure-devices.net/twins/"+deviceID+"/methods?api-version=2018-06-30";
+    context.log("DeviceId : ",DeviceId);
     context.log("DeviceId : ",deviceId);
->>>>>>> f367ec45ed18c4582fc8e049470e9807f7cc6841
     context.log("Temperature : ",temperature);
     context.log("humidity : ",humidity);
     context.log("pressure : ",pressure);
