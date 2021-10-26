@@ -1,0 +1,9 @@
+{
+    "azureFunctions.projectSubpath": "func-iothub-storage",
+    "azureFunctions.deploySubpath": "func-iothub-storage",
+    "azureFunctions.postDeployTask": "npm install (functions)",
+    "azureFunctions.projectLanguage": "JavaScript",
+    "azureFunctions.projectRuntime": "~3",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "npm prune (functions)"
+}
