@@ -168,7 +168,7 @@ select:disabled::-ms-expand {
     box-shadow: 0 0 2px rgba(75, 2, 2, 0.15), inset 0 0 1px rgba(75, 2, 2, 0.15);
   }
   95% {
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0), inset 0 0 30px rgba(0, 0, 0, 0);
+    box-shadow: 0 0 50px rgba(0, 0, 0, 0.8), inset 0 0 30px rgba(0, 0, 0, 0.8);
   }
   100% {
     transform: scale(2.25);

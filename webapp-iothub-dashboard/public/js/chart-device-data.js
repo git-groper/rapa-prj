@@ -63,11 +63,11 @@ $(document).ready(() => {
   const temperatureChartData = {
     datasets: [
       {
-        fill: false,
+        fill: true,
         label: 'Temperature',
         yAxisID: 'Temperature',
-        borderColor: 'rgba(255, 204, 0, 0.6)',
-        pointBoarderColor: 'rgba(255, 204, 0, 0.6)',
+        borderColor: 'rgba(255, 255, 0, 1)',
+        pointBoarderColor: 'rgba(255, 255, 0, 0.6)',
         backgroundColor: 'rgba(255, 204, 0, 0.3)',
         pointHoverBackgroundColor: 'rgba(255, 204, 0, 0.6)',
         pointHoverBorderColor: 'rgba(255, 204, 0, 0.6)',
@@ -79,7 +79,7 @@ $(document).ready(() => {
   const humidityChartData = {
     datasets: [
        {
-        fill: false,
+        fill: true,
         label: 'Humidity',
         yAxisID: 'Humidity',
         borderColor: 'rgba(24, 120, 240, 0.6)',
@@ -92,13 +92,13 @@ $(document).ready(() => {
     ]
   };
 
-  const ahumidityChartData = {
+  const pressureChartData = {
     datasets: [
        {
-        fill: false,
+        fill: true,
         label: 'Pressure',
         yAxisID: 'Pressure',
-        borderColor: 'rgba(190, 190, 190, 0.6)',
+        borderColor: 'rgba(50, 50, 50, 0.9)',
         pointBoarderColor: 'rgba(190, 190, 190, 0.6)',
         backgroundColor: 'rgba(190, 190, 190, 0.3)',
         pointHoverBackgroundColor: 'rgba(2190, 190, 190, 0.6)',
@@ -140,7 +140,7 @@ $(document).ready(() => {
     }
   };
 
-  const ahumidityChartOptions = {
+  const pressureChartOptions = {
     responsive: false, 
     scales: {
       yAxes: [
@@ -182,8 +182,8 @@ $(document).ready(() => {
     ctx_pressure,
     {
       type: 'line',
-      data: ahumidityChartData,
-      options: ahumidityChartOptions,
+      data: pressureChartData,
+      options: pressureChartOptions,
     });
 
 
@@ -202,8 +202,8 @@ $(document).ready(() => {
     humidityChartData.labels = device.timeData;
     humidityChartData.datasets[0].data = device.humidityData;
 
-    ahumidityChartData.labels = device.timeData;
-    ahumidityChartData.datasets[0].data = !(device.pressureData) ? 1 : device.pressureData;
+    pressureChartData.labels = device.timeData;
+    pressureChartData.datasets[0].data = !(device.pressureData) ? 1 : device.pressureData;
 
     // groper - 디바이스 정보 추가 - DB작업을 해야 하지만 급하니 우선 넣자.
     console.log("device id : " + device.deviceId);
@@ -289,7 +289,7 @@ $(document).ready(() => {
         // groper - 디바이스 정보 추가 - 여기서 말고 OnSelectionChanged에서 처리, 코드만 남겨둔다.
         //navDeviceInfo.innerText = `DeviceId : ${messageData.DeviceId} Driver Info : 이태훈`;
 
-        newDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, !(messageData.IotData.pressure)?1:messageData.IotData.pressurey);
+        newDeviceData.addData(messageData.MessageDate, messageData.IotData.temperature, messageData.IotData.humidity, !(messageData.IotData.pressure)?1:messageData.IotData.pressure);
 
         // add device to the UI list
         const node = document.createElement('option');
@@ -308,11 +308,11 @@ $(document).ready(() => {
       // groper - 경고 버튼 활성화
       //const testval = parseInt(messageData.IotData.temperature); // 테스트
       console.log('test %f', messageData.IotData.temperature);
-      if(messageData.IotData.temperature > 30.0)
+      if(messageData.IotData.temperature > 27.0)
       {
         const alert_element = document.getElementById('btn_alert');
         alert_element.classList.add("is-active");
-        alert_element.innerHTML = "!! Alert";
+        alert_element.innerHTML = '<pre style="font-family: arial; font-weight: bold;">!Check ' + messageData.DeviceId + '</pre>';
         console.log("Over - Temperature!!!")
       }
 
@@ -339,12 +339,22 @@ $(document).ready(() => {
         if (el.classList.contains("is-active")) {
           el.classList.remove("is-active");
           el.innerHTML = "Normal Status";
+        }
+      }
+    }
+/*
+    if (el !== e.currentTarget) {
+      if (el.nodeName === "BUTTON") {
+        if (el.classList.contains("is-active")) {
+          el.classList.remove("is-active");
+          el.innerHTML = "Normal Status";
         } else {
           el.classList.add("is-active");
           el.innerHTML = "!! Alert";
         }
       }
     }
+  */  
     event.stopPropagation();
   }
 });
