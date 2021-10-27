@@ -308,7 +308,7 @@ $(document).ready(() => {
       // groper - 경고 버튼 활성화
       //const testval = parseInt(messageData.IotData.temperature); // 테스트
       console.log('test %f', messageData.IotData.temperature);
-      if(messageData.IotData.temperature > 27.0)
+      if(messageData.IotData.temperature > 30.0)
       {
         const alert_element = document.getElementById('btn_alert');
         alert_element.classList.add("is-active");
